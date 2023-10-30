@@ -1,0 +1,23 @@
+.Clases {
+  @apply bg-white text-black py-24;
+  &-title {
+    @apply text-5xl text-center;
+  }
+  &-ul {
+    @apply text-black mt-4;
+    @apply flex flex-col items-center justify-center list-disc;
+  }
+  &-li {
+    @apply p-1;
+  }
+  &-p {
+    @apply text-base;
+  }
+  &-container {
+    @apply w-[80%] mx-auto my-14;
+    @apply grid grid-cols-1 gap-8;
+    @apply sm:grid-cols-2;
+    @apply md:grid-cols-3;
+    @apply lg:grid-cols-4;
+  }
+}

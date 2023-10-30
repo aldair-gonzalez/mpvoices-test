@@ -1,0 +1,6 @@
+.Maps {
+  @apply bg-stone-100 py-24 flex items-center justify-center;
+  &-map {
+    @apply w-full h-[20rem] sm:w-4/5 sm:h-[30rem] border-2 rounded-md;
+  }
+}
