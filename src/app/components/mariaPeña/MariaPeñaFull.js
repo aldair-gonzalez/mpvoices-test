@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import maria from '../../assets/maria.png'
-import usal from '../../assets/usal.jpg'
-import newfield from '../../assets/newfield.jpg'
-import ellipse from '../../assets/ellipse.jpg'
-import disco from '../../assets/disco.jpg'
+import maria from '@/app/assets/maria.png'
+import usal from '@/app/assets/usal.jpg'
+import newfield from '@/app/assets/newfield.jpg'
+import ellipse from '@/app/assets/ellipse.jpg'
+import disco from '@/app/assets/disco.jpg'
 import { openSans600, playfair600 } from '@/utils/fonts/fonts'
 import { list } from './list'
 
@@ -25,7 +25,7 @@ const MariaPeñaFull = () => {
         <h2 className={`text-center pb-6 text-5xl ${playfair600.className}`}>
           María Peña
         </h2>
-        <ol className={`flex flex-col gap-4 mb-10 list-disc text-base ${openSans600.className}`}>
+        <ol className={`flex flex-col gap-4 mb-10 list-disc text-base text-center ${openSans600.className}`}>
           {
             list.map((item) => (
               <li key={item.id} className='mx-auto'>

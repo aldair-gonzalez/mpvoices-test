@@ -7,18 +7,12 @@ const EspacioVoices = () => {
     <section id="EspacioVoices" className="flex flex-col mx-auto pt-12 pb-6 lg:pt-24 lg:pb-16">
       <h2 className={`text-center text-3xl sm:text-5xl mb-8 ${playfair700.className} sm:${playfair600.className}`}>Espacio Voices</h2>
       <div className={`w-full text-center flex flex-col justify-center text-base ${openSans600.className}`}>
-        <p className="lg:hidden px-12">
-          Un lugar único y especial para
-          aprender a tocar instrumentos y cantar.
-        </p>
-        <p className="hidden lg:flex px-16 mx-auto">
+        <p className="px-4">
           Un lugar único y especial para aprender a tocar instrumentos y cantar.
         </p>
-        <p className="lg:hidden px-20">
-          Clases que acompañan tus ganas de hacer música.
-        </p>
-        <p className="hidden lg:flex px-20 mx-auto">
-          Clases que acompañan tus ganas de hacer música.
+        <p className="px-4 flex flex-col sm:flex sm:flex-row sm:gap-1 sm:justify-center">
+          <span>Clases que acompañan </span>
+          <span>tus ganas de hacer música.</span>
         </p>
       </div>
       <div className={`flex flex-col mx-auto pt-12 text-base ${openSans600.className}`}>

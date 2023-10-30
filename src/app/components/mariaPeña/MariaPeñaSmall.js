@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import maria from '../../assets/maria.png'
-import usal from '../../assets/usal.jpg'
-import newfield from '../../assets/newfield.jpg'
-import ellipse from '../../assets/ellipse.jpg'
-import disco from '../../assets/disco.jpg'
+import maria from '@/app/assets/maria.png'
+import usal from '@/app/assets/usal.jpg'
+import newfield from '@/app/assets/newfield.jpg'
+import ellipse from '@/app/assets/ellipse.jpg'
+import disco from '@/app/assets/disco.jpg'
 import { list } from './list'
 import { openSans600, playfair700 } from '@/utils/fonts/fonts'
 
@@ -22,16 +22,16 @@ const MariaPeñaSmall = () => {
       <h2 className={`text-center mb-6 text-3xl ${playfair700.className}`}>
         María Peña
       </h2>
-      <ol className={`flex flex-col gap-4 mb-8 list-disc text-base mx-4 ${openSans600.className}`}>
+      <ol className={`flex flex-col gap-4 mb-8 list-disc text-base text-center mx-4 ${openSans600.className}`}>
         {
           list.map((item) => (
-            <li key={item.id} className="mx-auto text-base">
+            <li key={item.id} className="text-base mx-auto">
               <span className="w-1 h-1 bg-black rounded-full"></span>
               {item.title} {item.link && ' '}
               {
                 item.link &&
                   <a
-                    className="text-base text-[#E9500E]"
+                    className="text-base text-orange-600"
                     href={item.link.href}
                     target="_blank"
                     rel="noreferrer"
