@@ -1,15 +1,20 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-import { routes } from './routes'
 import { openSans600 } from '@/utils/fonts/fonts'
+import Link from 'next/link'
+import React, { useState, useEffect, useRef } from 'react'
 
 const NavSmall = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
+  const [usuario, setUsuario] = useState()
+  useEffect(() => {
+    const usuario = localStorage.getItem('usuario')
+    setUsuario(usuario)
+  })
+
   useEffect(() => {
     const handleLinkClick = (event) => {
-      // event.preventDefault()
+      event.preventDefault()
       const targetId = event.target.getAttribute('href').substring(1)
       const targetElement = document.getElementById(targetId)
       if (targetElement) {
@@ -38,7 +43,7 @@ const NavSmall = () => {
       document.removeEventListener('click', handleClickOutside)
     }
 
-    const links = document.querySelectorAll('a[href^="#"]')
+    const links = document.querySelectorAll('Link[href^="#"]')
     links.forEach((link) => {
       link.addEventListener('click', handleLinkClick)
     })
@@ -56,6 +61,39 @@ const NavSmall = () => {
       top: 0
     })
   }
+
+  const routes = [
+    {
+      label: 'Espacio Voices',
+      link: '/#EspacioVoices'
+    },
+    {
+      label: 'María Peña',
+      link: '/#MariaPeña'
+    },
+    {
+      label: 'Clases',
+      link: '/#Clases'
+    },
+    {
+      label: 'Nuevos Proyectos',
+      link: '/#NuevosProyectos'
+    },
+    {
+      label: 'Contacto',
+      link: '/#Footer'
+    },
+    {
+      label: 'Plataforma Alumnos',
+      link: usuario === 'profesor'
+        ? '/plataforma-profes'
+        : usuario === 'alumno'
+          ? '/plataforma-alumnos'
+          : usuario === 'admin'
+            ? '/plataforma-admin'
+            : '/login'
+    }
+  ]
 
   return (
     <nav className="bg-black flex lg:hidden flex-col fixed top-0 left-0 right-0 h-[3rem]">
@@ -75,7 +113,14 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <Link href="/login" className="flex my-auto">
+                <a href={usuario === 'profesor'
+                  ? '/plataforma-profes'
+                  : usuario === 'alumno'
+                    ? '/plataforma-alumnos'
+                    : usuario === 'admin'
+                      ? '/plataforma-admin'
+                      : '/login'} className="flex my-auto"
+                >
                   <svg
                     className="cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +136,7 @@ const NavSmall = () => {
                       fill="white"
                     />
                   </svg>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -100,7 +145,7 @@ const NavSmall = () => {
           <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-white">
             <svg
               onClick={() => setIsNavOpen((prev) => !prev)}
-              className="h-4 w-4 mr-auto cursor-pointer animate-pulse"
+              className="h-4 w-4 bg-white mr-auto cursor-pointer animate-pulse"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#0D0D0D"
@@ -115,30 +160,21 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div ref={appContainerRef} className="flex flex-col gap-4 w-[60%] sm:w-1/2 justify-between h-auto mb-3 pl-6 animate-display bg-white">
-            {
-              routes.map((route) => (
-                <div key={route.id}>
-                  <Link
-                    onClick={() => setIsNavOpen(false)}
-                    href={route.href}
-                    className={` text-black mr-auto text-base ${openSans600.className}`}
-                  >
-                    {route.title}
-                  </Link>
-                </div>
-              ))
-            }
-            <div className="pb-32 sm:pb-52">
-              <Link
-                onClick={() => setIsNavOpen(false)}
-                href="/login"
-                className={`text-black mr-auto text-base ${openSans600.className}`}
-              >
-                Plataforma alumnos
-              </Link>
+        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-28 justify-between h-auto pl-6 animate-display bg-white">
+          {routes.map((route) => (
+            <div key={route.label} className="flex bg-white">
+              <div className="flex mb-2 bg-white">
+                <Link
+                  onClick={() => setIsNavOpen(false)}
+                  href={route.link}
+                  className={`bg-white text-black mr-auto text-base ${openSans600.className}`}
+                >
+                  {route.label}
+                </Link>
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
         : ''}
     </nav>
   )
